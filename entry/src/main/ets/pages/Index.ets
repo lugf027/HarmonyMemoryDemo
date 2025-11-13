@@ -1,50 +1,47 @@
-import { CodeRenderV1WithLineNumber } from '../components/CodeRenderV1WithLineNumber';
-import { buffer } from '@kit.ArkTS';
 import { promptAction } from '@kit.ArkUI';
+import router from '@ohos.router';
+
+interface PageInfo {
+  title: string;
+  url: string;
+  implemented?: boolean;
+}
 
 @Entry
 @ComponentV2
 struct Index {
-  @Local rawfilePath: string = 'StudentGradeManager.java';
-  @Local rawfileContent: string = '';
+  @Local pages: PageInfo[] = [
+    { title: 'CodeRenderV1WithLineNumberPage', url: 'pages/CodeRenderV1WithLineNumberPage' },
+    { title: 'CodeRenderV2WithoutLineNumberPage', url: 'pages/CodeRenderV2WithoutLineNumberPage', implemented: false }
+  ];
 
   build() {
     Column() {
-      Scroll() {
-        Column() {
-          CodeRenderV1WithLineNumber({
-            text: this.rawfileContent
-          });
-        };
-      };
-    };
-  }
-
-  aboutToAppear(): void {
-    this.loadRawfile();
-  }
-
-  loadRawfile() {
-    try {
-      let uint8Array: Uint8Array | undefined =
-        this.getUIContext().getHostContext()?.resourceManager.getRawFileContentSync(this.rawfilePath);
-      if (!uint8Array) {
-        promptAction.showToast({
-          message: '读取失败'
+      List() {
+        ForEach(this.pages, (item: PageInfo) => {
+          ListItem() {
+            Row() {
+              Text(item.title)
+                .fontSize(18)
+                .fontColor(item.implemented === false ? '#888888' : '#000000');
+            }
+            .justifyContent(FlexAlign.Start)
+            .height(50)
+            .width('100%')
+            .onClick(() => {
+              if (item.implemented === false) {
+                promptAction.showToast({ message: '页面暂未实现' });
+                return;
+              }
+              router.pushUrl({ url: item.url });
+            });
+          }
+          .margin({ left: 16, right: 16 });
         });
-        return;
       }
-      let bf = buffer.from(uint8Array).buffer;
-      let bf2 = new buffer.Blob([bf]);
-      let pro = bf2.text();
-      pro.then((str: string) => {
-        this.rawfileContent = str;
-      });
-
-    } catch (error) {
-      promptAction.showToast({
-        message: '读取错误'
-      });
+      .width('100%');
     }
+    .width('100%')
+    .padding({ top: 20 });
   }
 }
