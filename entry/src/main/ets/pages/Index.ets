@@ -16,7 +16,8 @@ struct Index {
     { title: 'CodeRenderV3PreParseStylePage', url: 'pages/CodeRenderV3PreParseStylePage' },
     { title: 'CodeRenderV4NoTracePage', url: 'pages/CodeRenderV4NoTracePage' },
     { title: 'CodeRenderV5MergeNodePage', url: 'pages/CodeRenderV5MergeNodePage' },
-    { title: 'CodeRenderV6UICodePage', url: 'pages/CodeRenderV6UICodePage' }
+    { title: 'CodeRenderV6UICodePage', url: 'pages/CodeRenderV6UICodePage' },
+    { title: 'CodeRenderV7SwitchCodeStylePage', url: 'pages/CodeRenderV7SwitchCodeStylePage' },
   ];
 
   build() {

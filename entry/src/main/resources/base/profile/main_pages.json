@@ -6,6 +6,7 @@
     "pages/CodeRenderV3PreParseStylePage",
     "pages/CodeRenderV4NoTracePage",
     "pages/CodeRenderV5MergeNodePage",
-    "pages/CodeRenderV6UICodePage"
+    "pages/CodeRenderV6UICodePage",
+    "pages/CodeRenderV7SwitchCodeStylePage"
   ]
 }
