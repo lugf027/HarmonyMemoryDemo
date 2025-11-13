@@ -28,6 +28,7 @@ let reg = /(\.\w+\()/g;
  *       __id_refs__	2.09 KB
  *       __use_refs__	1 KB
  * 其中 updateFuncByElemId 有 5635 个引用
+ *      __id_refs__ 只有71个引用，降下来了
  */
 @ComponentV2
 export struct CodeRenderV4NoTrace {

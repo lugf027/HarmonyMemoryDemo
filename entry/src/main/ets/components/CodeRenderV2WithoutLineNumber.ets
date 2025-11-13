@@ -27,7 +27,9 @@ let reg = /(\.\w+\()/g;
  * 其中 updateFuncByElmtId	4470 KB
  *       __id_refs__	1090 KB
  *       __use_refs__	192.48 KB
- * 其中 updateFuncByElemId 有 7760 个引用；__id_refs__ 有 22644 个未知引用； __use_refs__ 有 15556 个 codeTheme 的引用
+ * 其中 updateFuncByElemId 有 7760 个引用；
+ *      __id_refs__ 有 22644 个未知引用；
+ *      __use_refs__ 有 15556 个 codeTheme 的引用
  */
 @ComponentV2
 export struct CodeRenderV2WithoutLineNumber {
