@@ -11,6 +11,7 @@ interface PageInfo {
 @ComponentV2
 struct Index {
   @Local pages: PageInfo[] = [
+    { title: 'CodeRender TextPage', url: 'pages/CodeRenderTextPage' },
     { title: 'CodeRenderV1 WithLineNumberPage', url: 'pages/CodeRenderV1WithLineNumberPage' },
     { title: 'CodeRenderV2 WithoutLineNumberPage', url: 'pages/CodeRenderV2WithoutLineNumberPage' },
     { title: 'CodeRenderV3 PreParseStylePage', url: 'pages/CodeRenderV3PreParseStylePage' },
