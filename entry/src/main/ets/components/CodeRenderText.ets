@@ -18,7 +18,12 @@ const copyContent = async (text: string) => {
   });
 };
 
-
+/**
+ * 组件内存占用（Retained Size）		14.11KB
+ * 其中: updateFuncByElmtId	3.8KB
+ *       __id_refs__	4.15KB
+ *       __use_refs__	0.77KB
+ */
 @ComponentV2
 export struct CodeRenderText{
   @Require @Param text: string = '';

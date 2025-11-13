@@ -21,7 +21,13 @@ const copyContent = async (text: string) => {
   });
 };
 
-
+/**
+ * 组件内存占用（Retained Size）		17.51 KB
+ * 其中 updateFuncByElmtId	4.25 KB
+ *       __id_refs__	2.3 KB
+ *       __use_refs__	0.88 KB
+ * 其中 updateFuncByElemId 有 8 个引用
+ */
 @ComponentV2
 export struct CodeRenderV9ParagraphStyleOneText {
   @Require @Param text: string = '';
@@ -72,7 +78,12 @@ export struct CodeRenderV9ParagraphStyleOneText {
       }
     }
     if (fullText.length > 0) {
-      styles.push({ start: 0, length: fullText.length, styledKey: StyledStringKey.LINE_HEIGHT, styledValue: new LineHeightStyle(LengthMetrics.vp(22)) });
+      styles.push({
+        start: 0,
+        length: fullText.length,
+        styledKey: StyledStringKey.LINE_HEIGHT,
+        styledValue: new LineHeightStyle(LengthMetrics.vp(22))
+      });
     }
     this.styledWhole = new MutableStyledString(fullText, styles);
     this.controller.setStyledString(this.styledWhole);

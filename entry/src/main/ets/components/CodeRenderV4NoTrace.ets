@@ -22,6 +22,13 @@ const copyContent = async (text: string) => {
 
 let reg = /(\.\w+\()/g;
 
+/**
+ * 组件内存占用（Retained Size）		4980 KB
+ * 其中 updateFuncByElmtId	3430 KB
+ *       __id_refs__	2.09 KB
+ *       __use_refs__	1 KB
+ * 其中 updateFuncByElemId 有 5635 个引用
+ */
 @ComponentV2
 export struct CodeRenderV4NoTrace {
   @Require @Param text: string = '';

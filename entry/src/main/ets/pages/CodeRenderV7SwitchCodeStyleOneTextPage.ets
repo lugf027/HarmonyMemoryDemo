@@ -1,6 +1,6 @@
 import { buffer } from '@kit.ArkTS';
 import { promptAction } from '@kit.ArkUI';
-import { CodeRenderV71SwitchCodeStyleOneText } from '../components/CodeRenderV71SwicthCodeStyleOneText';
+import { CodeRenderV71SwitchCodeStyleOneText } from '../components/CodeRenderV7SwicthCodeStyleOneText';
 
 @Entry
 @ComponentV2
