@@ -19,6 +19,7 @@ struct Index {
     { title: 'CodeRenderV6UICodePage', url: 'pages/CodeRenderV6UICodePage' },
     { title: 'CodeRenderV7SwitchCodeStylePage', url: 'pages/CodeRenderV7SwitchCodeStylePage' },
     { title: 'CodeRenderV8ParagraphStylePage', url: 'pages/CodeRenderV8ParagraphStylePage' },
+    { title: 'CodeRenderV9ParagraphStyleOneTextPage', url: 'pages/CodeRenderV9ParagraphStyleOneTextPage' },
   ];
 
   build() {

@@ -8,6 +8,7 @@
     "pages/CodeRenderV5MergeNodePage",
     "pages/CodeRenderV6UICodePage",
     "pages/CodeRenderV7SwitchCodeStylePage",
-    "pages/CodeRenderV8ParagraphStylePage"
+    "pages/CodeRenderV8ParagraphStylePage",
+    "pages/CodeRenderV9ParagraphStyleOneTextPage"
   ]
 }
