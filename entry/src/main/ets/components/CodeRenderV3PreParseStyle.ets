@@ -27,6 +27,53 @@ export struct CodeRenderV3PreParseStyle {
   @Require @Param text: string = '';
   @Param codeTheme: CodeTheme = CodeTheme.Dark;
   @Local rowLimit: number = -2;
+  @Local parsedRows: CodeRow[] = [];
+
+  aboutToAppear(): void {
+    this.reparse();
+  }
+
+  @Monitor('text')
+  onTextChange(): void {
+    this.reparse();
+  }
+
+  @Monitor('codeTheme')
+  onThemeChange(): void {
+    this.reparse();
+  }
+
+  reparse(): void {
+    const rows: CodeRow[] = [];
+    const isDark = this.codeTheme === CodeTheme.Dark;
+    const lines = (this.text || '').split('\n');
+    for (let i = 0; i < lines.length; i++) {
+      const rowText = lines[i];
+      const segs: CodeSegment[] = [];
+      if (rowText.trim().slice(0, 2) == '//') {
+        segs.push(new CodeSegment(rowText, isDark ? '#80f1f1f1' : '#8b666666'));
+      } else {
+        const parts = rowText.split(/(\w+|\.\w+\()/g);
+        for (let j = 0; j < parts.length; j++) {
+          const item = parts[j];
+          if (reg.test(item)) {
+            const fnName = item.slice(0, -1);
+            segs.push(new CodeSegment(fnName, isDark ? '#4FC1FF' : '#ff108edd'));
+            segs.push(new CodeSegment('(', codeStyle['(']));
+          } else {
+            const tokens = handleCodeLib(item);
+            for (let k = 0; k < tokens.length; k++) {
+              const tk = tokens[k];
+              const color: string = codeStyle[tk] || (isDark ? '#ffd9d9d9' : '#ff676767');
+              segs.push(new CodeSegment(tk, color));
+            }
+          }
+        }
+      }
+      rows.push(new CodeRow(segs));
+    }
+    this.parsedRows = rows;
+  }
 
   build() {
     Stack({
@@ -64,37 +111,16 @@ export struct CodeRenderV3PreParseStyle {
         List() {
           ListItem() {
             Column() {
-              // 分行
-              ForEach(this.text.split('\n'),
-                (rowText: string, ri: number) => {
+              ForEach(this.parsedRows,
+                (row: CodeRow, ri: number) => {
                   Stack({ alignContent: Alignment.Start }) {
                     Row() {
                       Text() {
-                        // 按行处理样式
-                        if (rowText.trim().slice(0, 2) == '//') {
-                          Span(rowText)
-                            .fontColor(this.codeTheme === CodeTheme.Dark ? '#80f1f1f1' : '#8b666666')
+                        ForEach(row.segments, (seg: CodeSegment) => {
+                          Span(seg.text)
+                            .fontColor(seg.color)
                             .fontSize(14);
-                        } else {
-                          ForEach(rowText.split(/(\w+|\.\w+\()/g), (item: string) => {
-                            if (reg.test(item)) {
-                              Span(item.slice(0, -1))
-                                .fontColor(this.codeTheme === CodeTheme.Dark ? '#4FC1FF' : '#ff108edd')
-                                .fontSize(14);
-                              Span('(')
-                                .fontColor(codeStyle['('])
-                                .fontSize(14);
-                            } else {
-                              // Text(item)
-                              ForEach(handleCodeLib(item), (item: string) => {
-                                Span(item)
-                                  .fontColor(codeStyle[item] ||
-                                    (this.codeTheme === CodeTheme.Dark ? '#ffd9d9d9' : '#ff676767'))
-                                  .fontSize(14);
-                              });
-                            }
-                          });
-                        }
+                        });
                       };
                     }
                     .margin({ left: 16 });
@@ -118,5 +144,23 @@ export struct CodeRenderV3PreParseStyle {
         .scrollBar(BarState.Off);
       };
     }.width('100%');
+  }
+}
+
+@ObservedV2
+class CodeSegment {
+  @Trace text: string;
+  @Trace color: string;
+  constructor(text: string, color: string) {
+    this.text = text;
+    this.color = color;
+  }
+}
+
+@ObservedV2
+class CodeRow {
+  @Trace segments: CodeSegment[];
+  constructor(segments: CodeSegment[]) {
+    this.segments = segments;
   }
 }
