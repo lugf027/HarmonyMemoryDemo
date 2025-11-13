@@ -67,7 +67,6 @@ export struct CodeRenderV2WithoutLineNumber {
         copyContent(this.text);
       });
 
-      // 不可滚动了
       Stack({ alignContent: Alignment.Bottom }) {
         List() {
           ListItem() {
