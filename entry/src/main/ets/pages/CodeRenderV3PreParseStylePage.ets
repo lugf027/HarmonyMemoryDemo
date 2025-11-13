@@ -1,5 +1,6 @@
 import { buffer } from '@kit.ArkTS';
 import { promptAction } from '@kit.ArkUI';
+import { CodeRenderV3PreParseStyle } from '../components/CodeRenderV3PreParseStyle';
 
 @Entry
 @ComponentV2
@@ -11,7 +12,9 @@ struct CodeRenderV3PreParseStylePage {
     Column() {
       Scroll() {
         Column() {
-          Text('hello')
+          CodeRenderV3PreParseStyle({
+            text: this.rawfileContent
+          });
         };
       };
     };
