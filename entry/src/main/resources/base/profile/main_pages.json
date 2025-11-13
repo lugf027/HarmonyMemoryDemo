@@ -9,6 +9,7 @@
     "pages/CodeRenderV6UICodePage",
     "pages/CodeRenderV7SwitchCodeStylePage",
     "pages/CodeRenderV8ParagraphStylePage",
-    "pages/CodeRenderV9ParagraphStyleOneTextPage"
+    "pages/CodeRenderV9ParagraphStyleOneTextPage",
+    "pages/CodeRenderV71SwitchCodeStyleOneTextPage"
   ]
 }

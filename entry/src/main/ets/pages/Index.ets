@@ -11,15 +11,16 @@ interface PageInfo {
 @ComponentV2
 struct Index {
   @Local pages: PageInfo[] = [
-    { title: 'CodeRenderV1WithLineNumberPage', url: 'pages/CodeRenderV1WithLineNumberPage' },
-    { title: 'CodeRenderV2WithoutLineNumberPage', url: 'pages/CodeRenderV2WithoutLineNumberPage' },
-    { title: 'CodeRenderV3PreParseStylePage', url: 'pages/CodeRenderV3PreParseStylePage' },
-    { title: 'CodeRenderV4NoTracePage', url: 'pages/CodeRenderV4NoTracePage' },
-    { title: 'CodeRenderV5MergeNodePage', url: 'pages/CodeRenderV5MergeNodePage' },
-    { title: 'CodeRenderV6UICodePage', url: 'pages/CodeRenderV6UICodePage' },
-    { title: 'CodeRenderV7SwitchCodeStylePage', url: 'pages/CodeRenderV7SwitchCodeStylePage' },
-    { title: 'CodeRenderV8ParagraphStylePage', url: 'pages/CodeRenderV8ParagraphStylePage' },
-    { title: 'CodeRenderV9ParagraphStyleOneTextPage', url: 'pages/CodeRenderV9ParagraphStyleOneTextPage' },
+    { title: 'CodeRenderV1 WithLineNumberPage', url: 'pages/CodeRenderV1WithLineNumberPage' },
+    { title: 'CodeRenderV2 WithoutLineNumberPage', url: 'pages/CodeRenderV2WithoutLineNumberPage' },
+    { title: 'CodeRenderV3 PreParseStylePage', url: 'pages/CodeRenderV3PreParseStylePage' },
+    { title: 'CodeRenderV4 NoTracePage', url: 'pages/CodeRenderV4NoTracePage' },
+    { title: 'CodeRenderV5 MergeNodePage', url: 'pages/CodeRenderV5MergeNodePage' },
+    { title: 'CodeRenderV6 UICodePage', url: 'pages/CodeRenderV6UICodePage' },
+    { title: 'CodeRenderV7 SwitchCodeStylePage', url: 'pages/CodeRenderV7SwitchCodeStylePage' },
+    { title: 'CodeRenderV7.1 SwitchCodeStyleOneTextPage', url: 'pages/CodeRenderV71SwitchCodeStyleOneTextPage' },
+    { title: 'CodeRenderV8 ParagraphStylePage', url: 'pages/CodeRenderV8ParagraphStylePage' },
+    { title: 'CodeRenderV9 ParagraphStyleOneTextPage', url: 'pages/CodeRenderV9ParagraphStyleOneTextPage' },
   ];
 
   build() {
