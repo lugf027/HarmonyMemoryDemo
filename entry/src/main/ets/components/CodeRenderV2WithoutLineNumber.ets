@@ -26,7 +26,6 @@ let reg = /(\.\w+\()/g;
 export struct CodeRenderV2WithoutLineNumber {
   @Require @Param text: string = '';
   @Param codeTheme: CodeTheme = CodeTheme.Dark;
-  @Local rowLimit: number = -2;
 
   build() {
     Stack({
