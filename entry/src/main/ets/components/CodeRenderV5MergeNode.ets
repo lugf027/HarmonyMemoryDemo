@@ -51,6 +51,8 @@ export struct CodeRenderV5MergeNode {
 
   reparse(): void {
     const rows: CodeSegment[][] = [];
+    let totalBefore = 0;
+    let totalAfter = 0;
     const isDark = this.codeTheme === CodeTheme.Dark;
     const lines = (this.text || '').split('\n');
     for (let i = 0; i < lines.length; i++) {
@@ -77,8 +79,12 @@ export struct CodeRenderV5MergeNode {
         }
       }
       const merged = this.mergeRowSegments(segs);
+      console.info(`第${i + 1}行 merge 前 Span=${segs.length}，merge 后 Span=${merged.length}`);
+      totalBefore += segs.length;
+      totalAfter += merged.length;
       rows.push(merged);
     }
+    console.info(`合计 merge 前 Span=${totalBefore}，merge 后 Span=${totalAfter}`);
     this.parsedRows = rows;
   }
 
