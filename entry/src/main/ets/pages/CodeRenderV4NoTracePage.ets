@@ -1,5 +1,6 @@
 import { buffer } from '@kit.ArkTS';
 import { promptAction } from '@kit.ArkUI';
+import { CodeRenderV4NoTrace } from '../components/CodeRenderV4NoTrace';
 
 @Entry
 @ComponentV2
@@ -11,7 +12,9 @@ struct CodeRenderV4NoTracePage {
     Column() {
       Scroll() {
         Column() {
-          Text('hello')
+          CodeRenderV4NoTrace({
+            text: this.rawfileContent
+          });
         };
       };
     };
