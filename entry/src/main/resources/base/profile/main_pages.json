@@ -1,6 +1,10 @@
 {
   "src": [
     "pages/Index",
-    "pages/CodeRenderV1WithLineNumberPage"
+    "pages/CodeRenderV1WithLineNumberPage",
+    "pages/CodeRenderV2WithoutLineNumberPage",
+    "pages/CodeRenderV3PreParseStylePage",
+    "pages/CodeRenderV4NoTracePage",
+    "pages/CodeRenderV5MergeNodePage"
   ]
 }

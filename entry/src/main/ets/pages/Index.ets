@@ -12,7 +12,10 @@ interface PageInfo {
 struct Index {
   @Local pages: PageInfo[] = [
     { title: 'CodeRenderV1WithLineNumberPage', url: 'pages/CodeRenderV1WithLineNumberPage' },
-    { title: 'CodeRenderV2WithoutLineNumberPage', url: 'pages/CodeRenderV2WithoutLineNumberPage', implemented: false }
+    { title: 'CodeRenderV2WithoutLineNumberPage', url: 'pages/CodeRenderV2WithoutLineNumberPage' },
+    { title: 'CodeRenderV3PreParseStylePage', url: 'pages/CodeRenderV3PreParseStylePage' },
+    { title: 'CodeRenderV4NoTracePage', url: 'pages/CodeRenderV4NoTracePage' },
+    { title: 'CodeRenderV5MergeNodePage', url: 'pages/CodeRenderV5MergeNodePage' },
   ];
 
   build() {
