@@ -70,9 +70,24 @@ export struct CodeRenderV5MergeNode {
           }
         }
       }
-      rows.push(segs);
+      const merged = this.mergeRowSegments(segs);
+      rows.push(merged);
     }
     this.parsedRows = rows;
+  }
+
+  mergeRowSegments(segs: CodeSegment[]): CodeSegment[] {
+    const merged: CodeSegment[] = [];
+    for (let i = 0; i < segs.length; i++) {
+      const cur = segs[i];
+      const last = merged.length > 0 ? merged[merged.length - 1] : undefined;
+      if (last && last.color === cur.color) {
+        merged[merged.length - 1] = { text: last.text + cur.text, color: last.color };
+      } else {
+        merged.push(cur);
+      }
+    }
+    return merged;
   }
 
   build() {
