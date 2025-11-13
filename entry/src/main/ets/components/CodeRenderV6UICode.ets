@@ -23,7 +23,7 @@ const copyContent = async (text: string) => {
 let reg = /(\.\w+\()/g;
 
 @ComponentV2
-export struct CodeRenderV4NoTrace {
+export struct CodeRenderV6UICode {
   @Require @Param text: string = '';
   @Param codeTheme: CodeTheme = CodeTheme.Dark;
   @Local parsedRows: CodeSegment[][] = [];
@@ -69,9 +69,24 @@ export struct CodeRenderV4NoTrace {
           }
         }
       }
-      rows.push(segs);
+      const merged = this.mergeRowSegments(segs);
+      rows.push(merged);
     }
     this.parsedRows = rows;
+  }
+
+  mergeRowSegments(segs: CodeSegment[]): CodeSegment[] {
+    const merged: CodeSegment[] = [];
+    for (let i = 0; i < segs.length; i++) {
+      const cur = segs[i];
+      const last = merged.length > 0 ? merged[merged.length - 1] : undefined;
+      if (last && last.color === cur.color) {
+        merged[merged.length - 1] = { text: last.text + cur.text, color: last.color };
+      } else {
+        merged.push(cur);
+      }
+    }
+    return merged;
   }
 
   build() {
@@ -103,43 +118,36 @@ export struct CodeRenderV4NoTrace {
         copyContent(this.text);
       });
 
-      // 不可滚动了
-      Stack({ alignContent: Alignment.Bottom }) {
-        List() {
-          ListItem() {
-            Column() {
-              ForEach(this.parsedRows,
-                (row: CodeSegment[], ri: number) => {
-                  Stack({ alignContent: Alignment.Start }) {
-                    Row() {
-                      Text() {
-                        ForEach(row, (seg: CodeSegment) => {
-                          Span(seg.text)
-                            .fontColor(seg.color)
-                            .fontSize(14);
-                        });
-                      };
-                    }
-                    .margin({ left: 16 });
-                  }
-                  .constraintSize({ minWidth: '100%' })
-                  .height(23);
+      Row() {
+
+        Scroll() {
+          Column() {
+            ForEach(this.parsedRows, (row: CodeSegment[], ri: number) => {
+              Text() {
+                ForEach(row, (code: CodeSegment) => {
+                  Span(code.text)
+                    .fontColor(code.color);
                 });
-            }
-            .alignItems(HorizontalAlign.Start);
-          }.padding({
-            top: 15,
-            bottom: 15,
-            left: 10,
-            right: 10
+              }
+              .height(22)
+              .lineHeight(22)
+              .fontSize(14.8);
+            });
+          }
+          .alignItems(HorizontalAlign.Start)
+          .padding({
+            left: 12,
+            right: 12,
+            bottom: 12
           });
         }
         .width('100%')
-        .listDirection(Axis.Horizontal)
-        .backgroundColor(this.codeTheme === CodeTheme.Dark ? '#282C35' : '#FAFAFA')
-        .borderRadius(6)
-        .scrollBar(BarState.Off);
-      };
+        .align(Alignment.Start)
+        .scrollable(ScrollDirection.Horizontal)
+        .edgeEffect(EdgeEffect.Spring);
+      }
+      .backgroundColor(this.codeTheme === CodeTheme.Dark ? '#282C35' : '#FAFAFA')
+      .borderRadius(6);
     }.width('100%');
   }
 }
