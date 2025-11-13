@@ -1,9 +1,9 @@
 import pasteboard from '@ohos.pasteboard';
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { CodeTheme } from './utils/codeTheme';
-import { highlightCodeToJSON } from './utils/highlightCode';
-import { defaultCodeHighlight } from './utils/CodeHighlight';
+import { CodeTheme } from '../utils/codeTheme';
+import { highlightCodeToJSON } from '../utils/highlightCode';
+import { defaultCodeHighlight } from '../utils/CodeHighlight';
 import { LengthMetrics } from '@kit.ArkUI';
 
 const copyContent = async (text: string) => {

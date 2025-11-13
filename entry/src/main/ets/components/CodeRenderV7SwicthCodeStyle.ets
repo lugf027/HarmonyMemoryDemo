@@ -1,11 +1,9 @@
 import pasteboard from '@ohos.pasteboard';
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { codeStyle } from './utils/codeStyle';
-import handleCodeLib from './utils/handleCodeLib';
-import { CodeTheme } from './utils/codeTheme';
-import { highlightCodeToJSON } from './utils/highlightCode';
-import { defaultCodeHighlight } from './utils/CodeHighlight';
+import { CodeTheme } from '../utils/codeTheme';
+import { highlightCodeToJSON } from '../utils/highlightCode';
+import { defaultCodeHighlight } from '../utils/CodeHighlight';
 
 const copyContent = async (text: string) => {
   let pasteData = pasteboard.createPlainTextData(text);
@@ -21,8 +19,6 @@ const copyContent = async (text: string) => {
     });
   });
 };
-
-let reg = /(\.\w+\()/g;
 
 /**
  * 组件内存占用（Retained Size）		1040 KB

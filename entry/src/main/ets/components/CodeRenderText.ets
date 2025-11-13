@@ -1,7 +1,7 @@
 import pasteboard from '@ohos.pasteboard';
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { CodeTheme } from './utils/codeTheme';
+import { CodeTheme } from '../utils/codeTheme';
 
 const copyContent = async (text: string) => {
   let pasteData = pasteboard.createPlainTextData(text);
