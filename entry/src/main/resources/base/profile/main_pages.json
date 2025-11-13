@@ -2,7 +2,6 @@
   "src": [
     "pages/Index",
     "pages/CodeRenderTextPage",
-    "pages/CodeRenderV1WithLineNumberPage",
     "pages/CodeRenderV2WithoutLineNumberPage",
     "pages/CodeRenderV3PreParseStylePage",
     "pages/CodeRenderV4NoTracePage",
