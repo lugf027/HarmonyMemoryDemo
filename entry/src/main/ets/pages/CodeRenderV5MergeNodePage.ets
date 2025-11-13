@@ -1,5 +1,6 @@
 import { buffer } from '@kit.ArkTS';
 import { promptAction } from '@kit.ArkUI';
+import { CodeRenderV5MergeNode } from '../components/CodeRenderV5MergeNode';
 
 @Entry
 @ComponentV2
@@ -11,7 +12,9 @@ struct CodeRenderV5MergeNodePage {
     Column() {
       Scroll() {
         Column() {
-          Text('hello')
+          CodeRenderV5MergeNode({
+            text: this.rawfileContent
+          })
         };
       };
     };
