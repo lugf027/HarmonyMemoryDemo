@@ -92,7 +92,6 @@ export struct CodeRenderV2WithoutLineNumber {
                                 .fontColor(codeStyle['('])
                                 .fontSize(14);
                             } else {
-                              // Text(item)
                               ForEach(handleCodeLib(item), (item: string) => {
                                 Span(item)
                                   .fontColor(codeStyle[item] ||
