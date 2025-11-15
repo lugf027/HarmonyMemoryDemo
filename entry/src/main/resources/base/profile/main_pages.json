@@ -10,6 +10,7 @@
     "pages/CodeRenderV7SwitchCodeStylePage",
     "pages/CodeRenderV8ParagraphStylePage",
     "pages/CodeRenderV9ParagraphStyleOneTextPage",
-    "pages/CodeRenderV7SwitchCodeStyleOneTextPage"
+    "pages/CodeRenderV7SwitchCodeStyleOneTextPage",
+    "pages/CodeRenderV3PreParseStyleMoreTracePage"
   ]
 }
